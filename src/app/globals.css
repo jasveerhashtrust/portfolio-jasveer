@@ -2,13 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html {
     font-family: var(--font-inter);
-  }
+}
 
-body{
+body {
     padding: 0px;
     background-color: #161616;
     font-family: 'Latin', sans-serif;
+}
+
+.max-lines-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink 0.1s step-end infinite;
+    animation-delay: 0.5s;
 }
