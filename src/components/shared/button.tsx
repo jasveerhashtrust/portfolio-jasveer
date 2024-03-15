@@ -6,7 +6,7 @@ const Button = ({
     icon,
     onClickHandler,
 }: {
-    text: string
+    text?: string
     icon?: ReactNode
     onClickHandler?: () => void
 }) => {

@@ -7,7 +7,7 @@ const Template = ({ children }: { children: ReactNode }) => {
     return (
         <>
             <SwitchTheme />
-            <div className="flex  max-w-[1024px] relative  p-[20px] container mx-auto gap-[20px] flex-col  items-center">
+            <div className="flex  max-w-[1140px] relative  p-[20px] container mx-auto gap-[30px] flex-col  items-center">
                 <Header />
                 {children}
                 <Footer />

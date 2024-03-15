@@ -5,7 +5,7 @@ import Arrow from './icons/arrow'
 
 const Header = () => {
     return (
-        <div className="w-full border-b-0.5 border-solid  border-borderGreyLight container mx-auto flex flex-row flex-no-wrap h-min-content justify-between items-center overflow-visible p-0 pb-[20px] relative">
+        <div className="w-full border-b-0.5 border-solid  border-borderGreyLight container mx-auto flex flex-row flex-no-wrap h-min-content justify-between items-center overflow-visible pt-[20px] pb-[20px] relative">
             <div className=" flex flex-row flex-no-wrap gap-[15px] h-min-content  overflow-hidden p-0 relative w-min-content">
                 <div className="rounded-[50%] overflow-hidden w-[40px]">
                     <Image

@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import Button from './button'
 import Container from './container'
@@ -11,12 +12,15 @@ import Bing from '../icons/bing'
 import Mail from '../icons/mail'
 import Input from './input'
 import { downloadPdf } from '@/helper/helper'
+import { motion } from 'framer-motion'
+import { useDraggableMotion } from '@/animations/drag-animation'
+import { signIn } from 'next-auth/react'
 
-export const renderNewsletterContainer = () => (
+export const RenderNewsletterContainer = () => (
     <Container
         childStyle="mt-auto"
         title="Newsletter"
-        style="col-start-1 row-start-4"
+        style="lg:col-start-1  lg:row-start-1 lg:col-span-1 row-start-4 col-span-2"
     >
         <div className="flex mt-auto flex-col items-start gap-[10px] min-h-min-content justify-start overflow-hidden p-[10px] relative w-full">
             <Input placeholder={'name@gmail.com'} />
@@ -25,8 +29,12 @@ export const renderNewsletterContainer = () => (
     </Container>
 )
 
-export const renderCvContainer = () => (
-    <Container childStyle="mt-auto" title="CV" style="col-start-6 row-start-4">
+export const RenderCvContainer = () => (
+    <Container
+        childStyle="mt-auto"
+        title="CV"
+        style="lg:col-start-6 lg:row-start-4 row-start-6"
+    >
         <div className="flex mt-auto flex-col items-start gap-[10px] min-h-min-content justify-start overflow-hidden p-[10px] relative w-full">
             <Button text="View" icon={<Arrow />} />
             <Button
@@ -38,11 +46,11 @@ export const renderCvContainer = () => (
     </Container>
 )
 
-export const renderExperienceContainer = () => (
+export const RenderExperienceContainer = () => (
     <Container
         childStyle="flex justify-center items-center"
         title="Year of Experience"
-        style="col-start-5 row-start-4"
+        style="lg:col-start-5 lg:row-start-4 row-start-6"
     >
         <p className="text-[105px] mt-5 w-full h-full flex justify-center items-center  font-normal leading-[.8em]  mb-0 tracking-[-.1em] text-white">
             2.1
@@ -50,8 +58,11 @@ export const renderExperienceContainer = () => (
     </Container>
 )
 
-export const renderSideProjectsContainer = () => (
-    <Container title="Education" style="col-span-2 col-start-5 row-start-3">
+export const RenderSideProjectsContainer = () => (
+    <Container
+        title="Education"
+        style="lg:col-span-2 lg:col-start-5 lg:row-start-3 row-start-6"
+    >
         <div className="flex mt-auto flex-col items-start gap-[10px] min-h-min-content justify-start overflow-hidden p-[10px] relative w-full">
             <div className="flex flex-row items-start justify-start gap-[20px] h-min-content relative py-[10px]">
                 <div className="flex  max-w-[27%] w-full  flex-row flex-wrap items-center justify-start gap-[5px] h-min-content overflow-visible relative p-0">
@@ -77,46 +88,60 @@ export const renderSideProjectsContainer = () => (
     </Container>
 )
 
-export const renderLatestWorkContainer = () => (
-    <Container
-        title="Latest Work"
-        style="col-span-2 row-span-2 col-start-3 row-start-3"
-    >
-        <div className="object-cover ">
-            <Image
-                src="/mobile.webp"
-                alt="mobile"
-                width={1000}
-                height={1000}
-                className="w-full absoulte h-full"
-            />
-        </div>
-    </Container>
-)
+export const RenderLatestWorkContainer = () => {
+    return (
+        <Container
+            onclick={() => signIn()}
+            title="Latest Work"
+            style="col-span-2 row-span-2 col-start-3 lg:row-start-3 row-start-4"
+            subTitle="Sign In"
+        >
+            <div className="object-cover">
+                <Image
+                    src="/mobile.webp"
+                    alt="mobile"
+                    width={1000}
+                    height={1000}
+                    className="w-full absoulte h-full"
+                />
+            </div>
+        </Container>
+    )
+}
 
-export const renderMapContainer = () => (
-    <Container childStyle={'absolute'} subTitle={'Gurgoan'} title={'Location'}>
-        <Image
-            src="/map.webp"
-            width={0}
-            height={0}
-            alt="map"
-            sizes="100vh"
-            className="w-full h-full rounded-[15px]"
-        />
-    </Container>
-)
+export const RenderMapContainer = () => {
+    const dragMotion = useDraggableMotion()
+    return (
+        <motion.div {...dragMotion}>
+            <Container
+                childStyle={'absolute'}
+                subTitle={'Gurgoan'}
+                title={'Location'}
+            >
+                <Image
+                    src="/map.webp"
+                    width={0}
+                    height={0}
+                    alt="map"
+                    sizes="100vh"
+                    className="w-full z-10 h-full rounded-[15px]"
+                    draggable={false}
+                />
+            </Container>
+        </motion.div>
+    )
+}
 
 export const Dot = () => (
     <div className="bg-redDot blink rounded-[50%] w-[8px] h-[8px] shadow-shadow"></div>
 )
 
-export const renderModeContainer = () => (
+export const RenderModeContainer = () => (
     <Container
         childStyle="mt-auto"
         title="Mode"
         subTitle={<Dot />}
-        style="col-start-2 row-start-1"
+        style="lg:col-start-2 lg:row-start-1 row-start-6"
     >
         <div className="flex mt-auto flex-col items-start gap-[10px] min-h-min-content justify-start overflow-hidden p-[10px] relative w-full">
             <p className="text-[11.5px] font-normal leading-[1.5em] text-white tracking-[0em]">
@@ -128,12 +153,12 @@ export const renderModeContainer = () => (
     </Container>
 )
 
-export const renderAboutContainer = () => (
+export const RenderAboutContainer = () => (
     <Container
         childStyle="mt-auto"
         title="About"
         subTitle="Maximilian Stone"
-        style="col-span-2 col-start-3 row-start-1"
+        style="lg:col-span-2 lg:col-start-3 lg:row-start-1"
     >
         <div className="flex mt-auto flex-col items-start gap-[10px] min-h-min-content justify-start overflow-hidden p-[10px] relative w-full">
             <p className="text-[11.5px]  font-normal leading-[1.5em] text-white tracking-[0em]">
@@ -146,10 +171,10 @@ export const renderAboutContainer = () => (
     </Container>
 )
 
-export const renderEducationContainer = () => (
+export const RenderEducationContainer = () => (
     <Container
         title="Experience"
-        style="col-span-2 lg:row-span-2  lg:col-start-5 lg:row-start-1"
+        style="col-span-2 lg:row-span-2 lg:col-start-5 lg:row-start-1"
     >
         <div className="flex mt-auto  flex-col items-start gap-[10px] min-h-min-content justify-start overflow-hidden p-[10px] relative w-full">
             {ExperienceData.map((data, index) => (
@@ -180,11 +205,11 @@ export const renderEducationContainer = () => (
     </Container>
 )
 
-export const renderGetInTochContainer = () => (
+export const RenderGetInTochContainer = () => (
     <Container
         childStyle="mt-auto !justify-center !items-center"
         title="Get in touch"
-        style="col-span-2 col-start-3 row-start-2"
+        style="col-span-2 col-start-3 row-start-2  row-span-2 lg:row-span-1"
     >
         <div className="flex mt-auto flex-row  items-center gap-[10px] min-h-min-content justify-center overflow-hidden p-[10px] relative w-full">
             <div className="flex  justify-center items-center rounded-[50%] border-0.5 border-solid border-borderGreyLight  h-[60px] w-[60px]">
@@ -203,11 +228,11 @@ export const renderGetInTochContainer = () => (
     </Container>
 )
 
-export const renderProjectsContainer = () => (
+export const RenderProjectsContainer = () => (
     <Container
         childStyle="mt-auto"
         title="Projects"
-        style="col-span-2 row-span-2 lg:col-start-1 row-start-2"
+        style="col-span-2 lg:col-start-1 lg:col-span-2 col-span-2 row-span-2 row-start-2"
     >
         <div className="flex flex-col p-[10px] items-start justify-start gap-[10px] h-min-content relative w-full">
             {ProjectsData.map((data, index) => (

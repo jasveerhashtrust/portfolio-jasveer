@@ -6,12 +6,14 @@ const Container = ({
     title,
     subTitle,
     childStyle,
+    onclick,
 }: {
     children?: ReactNode
     style?: string
     title?: string
     childStyle?: string
     subTitle?: string | ReactNode
+    onclick?: () => void
 }) => {
     return (
         <div
@@ -19,13 +21,16 @@ const Container = ({
         >
             <div className="flex flex-col items-center content-center flex-no-wrap gap-0 h-full justify-start overflow-visible p-0  w-full">
                 <div
-                    className={`flex flex-row flex-no-wrap z-50 items-center content-center gap-[10px] min-h-min-content justify-center overflow-visible p-[10px] no-underline w-full`}
+                    className={`flex flex-row flex-no-wrap z-20 items-center content-center gap-[10px] min-h-min-content justify-center overflow-visible p-[10px] no-underline w-full`}
                 >
                     <div className=" border-b-0.5 border-solid border-borderGreyLight w-full flex justify-between items-start  pb-[10px] ">
                         <span className="text-[11.5px] text-center hover:opacity-50  font-normal leading-[1em] text-white tracking-[0em]">
                             {title && title}
                         </span>
-                        <span className="text-[11.5px] text-center hover:opacity-50  font-normal leading-[1em]  text-textLight tracking-[0em]">
+                        <span
+                            onClick={onclick}
+                            className="text-[11.5px] text-center hover:opacity-50  font-normal leading-[1em]  text-textLight tracking-[0em]"
+                        >
                             {subTitle && subTitle}
                         </span>
                     </div>
